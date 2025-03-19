@@ -4,7 +4,7 @@ This project was developed to automate the testing of Amazon's website using Sel
 
 https://www.loom.com/share/698033f81e8441a6bae5f47228cc3f57
 
-PAGE
+<b>PAGE</b>
 
 pages > base_page.py
 This file provides a basic structure for all other page classes. Common operations with Selenium WebDriver, such as checking for the existence of an element or waiting for page load, are defined here. Other page classes inherit from this class and utilize these shared functions.
@@ -21,8 +21,7 @@ This role is responsible for managing operations related to the search results p
 test > test_check_add_to_cart_amazon.py
 This file contains a test case that evaluates the process of adding products to the cart. The scenario performs a search, selects, and adds a product to the cart using other page classes (e.g., home_page.py, search_results_page.py, product_page.py). The outcome of this process is then assessed to determine the success of the addition to the cart.
 
-
-Steps :
+<b>STEPS</b>
 1. Launch the Chrome browser.
 2. Disable notifications.
 3. Make the browser window full screen.
@@ -46,4 +45,6 @@ Steps :
 21. Go back to the home page.
 22. Verify that you are on the home page.
 23. Close the browser when the test is complete.
+
+First, I ran the test steps manually. Then, using what I learned in test automation session 1 during the bootcamp process, I coded it in a complex single page with the name 'test_check_add_to_cart_amazon.py'. Then, using the Page Object Model (POM) structure I learned in test automation session 2, I decomposed the classes into pages. Finally, I completed the project by running automation tests.
 
