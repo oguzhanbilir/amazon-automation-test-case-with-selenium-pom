@@ -4,6 +4,22 @@ This project was developed to automate the testing of Amazon's website using Sel
 
 https://www.loom.com/share/698033f81e8441a6bae5f47228cc3f57
 
+pages > base_page.py
+This file provides a basic structure for all other page classes. Common operations with Selenium WebDriver, such as checking for the existence of an element or waiting for page load, are defined here. Other page classes inherit from this class and utilize these shared functions.
+
+pages > home_page.py
+This role is responsible for managing operations related to Amazon's home page. It encompasses various operations, such as text entry in the search bar and clicking on specific elements on the home page.
+
+pages > product_page.py
+This role is responsible for managing the operations related to the detail page of a product. This section details operations such as adding a product to a cart and retrieving product information.
+
+pages > search_results_page.py
+This role is responsible for managing operations related to the search results page. This section details the process of selecting a specific product, filtering search results, and related tasks.
+
+test > test_check_add_to_cart_amazon.py
+This file contains a test case that evaluates the process of adding products to the cart. The scenario performs a search, selects, and adds a product to the cart using other page classes (e.g., home_page.py, search_results_page.py, product_page.py). The outcome of this process is then assessed to determine the success of the addition to the cart.
+
+
 Steps :
 1. Launch the Chrome browser.
 2. Disable notifications.
