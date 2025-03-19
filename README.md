@@ -23,7 +23,7 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları takip ed
    ```bash
    pip install -r requirements.txt
 
-Projeyi çalıştırmak için aşağıdaki komutu kullanın:
+4. Projeyi çalıştırmak için aşağıdaki komutu kullanın:
    ```bash
    python -m unittest tests/test_check_add_to_cart_amazon.py
 
@@ -45,3 +45,6 @@ Belirli bir ürünü sepete ekleme
 Sepet sayacını kontrol etme
 
 Testleri çalıştırmak için:
+
+   ```bash
+   python -m unittest discover tests
