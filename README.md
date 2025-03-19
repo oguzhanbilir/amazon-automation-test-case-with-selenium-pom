@@ -2,8 +2,7 @@
 
 This project was developed to automate the testing of Amazon's website using Selenium and the Page Object Model (POM).
 
-Otomasyon sürecinin çalışma videosunu izlemek için <a href"https://www.loom.com/share/698033f81e8441a6bae5f47228cc3f57">tıklayınız</a>.
-
+https://www.loom.com/share/698033f81e8441a6bae5f47228cc3f57
 
 Steps :
 1. Launch the Chrome browser.
