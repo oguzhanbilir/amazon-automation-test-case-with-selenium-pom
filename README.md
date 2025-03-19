@@ -46,5 +46,7 @@ This file contains a test case that evaluates the process of adding products to 
 22. Verify that you are on the home page.
 23. Close the browser when the test is complete.
 
+<b>PROCESS SUMMARY<b/>
+
 First, I ran the test steps manually. Then, using what I learned in test automation session 1 during the bootcamp process, I coded it in a complex single page with the name 'test_check_add_to_cart_amazon.py'. Then, using the Page Object Model (POM) structure I learned in test automation session 2, I decomposed the classes into pages. Finally, I completed the project by running automation tests.
 
