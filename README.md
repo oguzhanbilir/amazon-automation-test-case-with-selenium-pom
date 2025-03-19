@@ -4,6 +4,8 @@ This project was developed to automate the testing of Amazon's website using Sel
 
 https://www.loom.com/share/698033f81e8441a6bae5f47228cc3f57
 
+PAGE
+
 pages > base_page.py
 This file provides a basic structure for all other page classes. Common operations with Selenium WebDriver, such as checking for the existence of an element or waiting for page load, are defined here. Other page classes inherit from this class and utilize these shared functions.
 
