@@ -1,4 +1,6 @@
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from .base_page import BasePage
 
 class HomePage(BasePage):
@@ -12,7 +14,11 @@ class HomePage(BasePage):
         self.driver.get(self.url)
 
     def accept_cookies(self):
-        self.click_element(*self.cookies_accept_button)
+        # Çerez bandı her ziyarette çıkmayabilir; çıkmadıysa devam ediyoruz.
+        try:
+            self.click_element(*self.cookies_accept_button, timeout=5)
+        except TimeoutException:
+            pass
 
     def search_for(self, text):
         self.enter_text(*self.search_box, text)
