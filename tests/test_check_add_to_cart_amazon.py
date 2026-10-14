@@ -33,6 +33,8 @@ class TestCheckAddToCartAmazon(unittest.TestCase):
     def test_check_add_to_cart_amazon(self):
         # amazon.com.tr ana sayfasını açıyoruz.
         self.home_page.open()
+        if self.home_page.is_bot_check():
+            self.skipTest("Amazon bu makineye captcha gösterdi; test yerel makinede çalıştırılmalı.")
 
         # Çerezleri kabul ediyoruz.
         self.home_page.accept_cookies()

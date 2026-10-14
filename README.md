@@ -1,7 +1,5 @@
 # Amazon Automation Test Case with Python+Selenium 
 
-[![UI tests](https://github.com/oguzhanbilir/amazon-automation-test-case-with-selenium-pom/actions/workflows/tests.yml/badge.svg)](https://github.com/oguzhanbilir/amazon-automation-test-case-with-selenium-pom/actions/workflows/tests.yml)
-
 This project was developed to automate the testing of Amazon's website using Selenium and the Page Object Model (POM).
 
 https://www.loom.com/share/698033f81e8441a6bae5f47228cc3f57
@@ -14,6 +12,8 @@ pytest --html=reports/report.html --self-contained-html
 ```
 
 Set `HEADLESS=1` to run Chrome without a window. GitHub Actions runs the suite headless on every push and uploads the HTML report as a build artifact.
+
+Note: Amazon often answers datacenter IPs, like GitHub's runners, with a captcha instead of the store page. When that happens the test is reported as skipped with that reason, not passed. The full scenario runs on a normal machine.
 
 <b>PROJECT STRUCTURE</b>
 

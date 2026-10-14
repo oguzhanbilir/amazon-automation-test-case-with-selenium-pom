@@ -13,6 +13,10 @@ class HomePage(BasePage):
     def open(self):
         self.driver.get(self.url)
 
+    def is_bot_check(self):
+        # Amazon, veri merkezi IP'lerine (ör. CI sunucuları) arama sayfası yerine captcha gösterebiliyor.
+        return "validateCaptcha" in self.driver.page_source or not self.is_displayed(*self.search_box, timeout=10)
+
     def accept_cookies(self):
         # Çerez bandı her ziyarette çıkmayabilir; çıkmadıysa devam ediyoruz.
         try:
