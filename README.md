@@ -1,82 +1,53 @@
-# Amazon Automation Test Case with Python+Selenium 
+English | [Türkçe](README.tr.md)
 
-This project was developed to automate the testing of Amazon's website using Selenium and the Page Object Model (POM).
+# Amazon add-to-cart test automation (Python + Selenium)
 
-https://www.loom.com/share/698033f81e8441a6bae5f47228cc3f57
+This was my final project for the Insider & Testinium Tech Hub QA Tester Bootcamp (2025). It automates the add-to-cart flow on amazon.com.tr with Selenium and the Page Object Model, and runs with pytest.
 
-<b>HOW TO RUN</b>
+Demo video: https://www.loom.com/share/698033f81e8441a6bae5f47228cc3f57
+
+## Running
 
 ```bash
 pip install -r requirements.txt
 pytest --html=reports/report.html --self-contained-html
 ```
 
-Set `HEADLESS=1` to run Chrome without a window. GitHub Actions runs the suite headless on every push and uploads the HTML report as a build artifact.
+Set `HEADLESS=1` to run Chrome without a window. GitHub Actions runs the suite headless on every push and uploads the HTML report as an artifact.
 
-Note: Amazon often answers datacenter IPs, like GitHub's runners, with a captcha instead of the store page. When that happens the test is reported as skipped with that reason, not passed. The full scenario runs on a normal machine.
+Amazon often answers datacenter IPs, like GitHub's runners, with a captcha instead of the store page. When that happens the test is reported as skipped with that reason, not as passed. The full scenario runs on a normal machine.
 
-<b>PROJECT STRUCTURE</b>
+## Structure
 
 ```
 pages/
   base_page.py            shared waits and actions
-  home_page.py
-  search_results_page.py
-  product_page.py
-  cart_page.py
+  home_page.py            search box and home page elements
+  search_results_page.py  paging and picking a product
+  product_page.py         product details and add to cart
+  cart_page.py            checking and removing the cart item
 tests/
   test_check_add_to_cart_amazon.py
 .github/workflows/tests.yml
 ```
 
-<b>PAGES</b>
+Every page class inherits from `BasePage`, which holds the explicit waits and common actions. The test only talks to the page classes.
 
-pages > base_page.py
-This file provides a basic structure for all other page classes. Common operations with Selenium WebDriver, such as checking for the existence of an element or waiting for page load, are defined here. Other page classes inherit from this class and utilize these shared functions.
+## Test scenario
 
-pages > home_page.py
-This role is responsible for managing operations related to Amazon's home page. It encompasses various operations, such as text entry in the search bar and clicking on specific elements on the home page.
+1. Open Chrome full screen with notifications off (explicit waits, up to 10 s per element)
+2. Go to https://www.amazon.com.tr/ and check the home page opened; accept cookies if asked
+3. Search for "samsung" and check the results contain the word
+4. Go to page 2 of the results and check the URL contains `page=2`
+5. Open the 3rd product and check its title is not empty; if it's out of stock, go back and try the next one
+6. Click "Add to Cart", or "See buying options" first if the button isn't shown
+7. Check the cart counter shows 1
+8. Open the cart and check the right product is there
+9. Remove the product and check the cart is empty
+10. Go back to the home page, check it, and close the browser
 
-pages > product_page.py
-This role is responsible for managing the operations related to the detail page of a product. This section details operations such as adding a product to a cart and retrieving product information.
+## How it was built
 
-pages > search_results_page.py
-This role is responsible for managing operations related to the search results page. This section details the process of selecting a specific product, filtering search results, and related tasks.
+I first ran the steps by hand, then wrote them as a single test file. Next I split the code into page classes with POM. Later I moved the cart steps into POM too, switched the runner to pytest with an HTML report, and added the GitHub Actions workflow.
 
-pages > cart_page.py
-This role is responsible for the cart page: checking the product in the cart, deleting it, and waiting for the cart counter to update.
-
-tests > test_check_add_to_cart_amazon.py
-This file contains a test case that evaluates the process of adding products to the cart. The scenario performs a search, selects, and adds a product to the cart using other page classes (e.g., home_page.py, search_results_page.py, product_page.py). The outcome of this process is then assessed to determine the success of the addition to the cart.
-
-<b>STEPS</b>
-1. Launch the Chrome browser.
-2. Disable notifications.
-3. Make the browser window full screen.
-4. Wait up to 10 seconds for each element with explicit waits.
-5. Go to https://www.amazon.com.tr/.
-6. Verify that the home page opens.
-7. Click on the Accept cookies button if you have one and accept cookies.
-8. Type “samsung” in the search box and click the search button.
-9. Verify that the search results contain the word “samsung”.
-10. Click on page 2 in the search results.
-11. Verify that you are on page 2 by checking that the URL contains the phrase “page=2”.
-12. Click on the 3rd product on page 2.
-13. Verify that the product page opens and the product title is not empty. If the product can't be added to the cart (out of stock), go back and try the next one.
-14. If the “Add to Cart” button is visible, click on it.
-15. If the “Add to Cart” button is not visible, click on the “View Purchase Options” button and then click on the “Add to Cart” button.
-16. Verify that the product has been added to the cart by checking that the cart counter is “1”.
-17. Go to the cart page.
-18. Verify that you are on the cart page and the correct product has been added to the cart.
-19. Delete the product from the cart.
-20. Verify that the product has been deleted from the cart.
-21. Go back to the home page.
-22. Verify that you are on the home page.
-23. Close the browser when the test is complete.
-
-<b>PROCESS SUMMARY</b>
-
-First, I ran the test steps manually. Then, using what I learned in test automation session 1 during the bootcamp process, I coded it in a complex single page with the name 'test_check_add_to_cart_amazon.py'. Then, using the Page Object Model (POM) structure I learned in test automation session 2, I decomposed the classes into pages. Finally, I completed the project by running automation tests.
-
-Later I moved the whole scenario, including the cart steps, into the POM structure, switched the runner to pytest with an HTML report, and added a GitHub Actions workflow so the suite runs on every push.
-
+Developer: Oğuzhan Bilir
